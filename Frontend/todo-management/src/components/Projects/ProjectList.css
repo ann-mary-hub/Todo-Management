@@ -1,0 +1,73 @@
+/* General Container Styles */
+.project-list-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title Styling */
+  .project-list-title {
+    font-size: 2rem;
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+  }
+  
+  /* List Styling */
+  .project-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* Each Project Item Styling */
+  .project-item {
+    background: #ffffff;
+    margin: 10px 0;
+    padding: 15px 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Project Title */
+  .project-item h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #343a40;
+  }
+  
+  /* Project Description */
+  .project-item p {
+    margin: 10px 0 0;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  /* Hover Effects */
+  .project-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    .project-list-container {
+      padding: 10px;
+    }
+  
+    .project-item h2 {
+      font-size: 1.2rem;
+    }
+  
+    .project-item p {
+      font-size: 0.9rem;
+    }
+  }
+  

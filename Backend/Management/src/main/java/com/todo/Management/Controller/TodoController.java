@@ -71,21 +71,27 @@
 
 package com.todo.Management.Controller;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.todo.Management.Entity.Project;
 import com.todo.Management.Entity.Todo;
 import com.todo.Management.Service.ProjectService;
 import com.todo.Management.Service.TodoService;
 
 @RestController
 @RequestMapping("/api/todos")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TodoController {
 
     @Autowired
@@ -112,23 +118,22 @@ public class TodoController {
     // }
 
 
-
-    // @PostMapping("/{project_id}")
-    // public ResponseEntity<Todo> addTodoToProject(@PathVariable Long project_id, @RequestBody Todo todo) {
-    //     // Retrieve the Project entity by project_id
-    //     Project project = ProjectService.getProjectById(project_id);
-
-    //     // Set the Project to the Todo entity
-    //     todo.setProject(project);
-
-    //     // Optionally, set the creation date if necessary
-    //     todo.setCreatedDate(LocalDateTime.now());
-
-    //     // Save the Todo and return the response
-    //     Todo createdTodo = todoService.addTodoToProject(todo);
-    //     return ResponseEntity.ok(createdTodo);
-    // }
-
+    @PostMapping("/{project_id}")
+    public ResponseEntity<Todo> addTodoToProject(@PathVariable Long project_id, @RequestBody Todo todo) {
+        // Use the injected ProjectService instance to call the method
+        Project project = projectService.getProjectById(project_id);
+    
+        // Set the Project to the Todo entity
+        todo.setProject(project);
+    
+        // Optionally, set the creation date if necessary
+        todo.setCreatedDate(LocalDateTime.now());
+    
+        // Save the Todo and return the response
+        Todo createdTodo = todoService.addTodoToProject(todo);
+        return ResponseEntity.ok(createdTodo);
+    }
+    
 
 
 
