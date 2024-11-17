@@ -470,19 +470,58 @@ const ProjectDetails = () => {
       .catch(error => console.log('Error editing todo', error));
   };
 
-  const handleToggleCompletion = (todoId, completed) => {
-    axios.put(`http://localhost:8083/api/todos/${todoId}`, { completed: !completed })
+  // const handleToggleCompletion = (todoId, completed) => {
+  //   axios.put(`http://localhost:8083/api/todos/${todoId}/complete`, { completed: !completed })
+  //     .then(response => {
+  //       setProject(prev => ({
+  //         ...prev,
+  //         todos: prev.todos.map(todo => 
+  //           todo.id === todoId ? { ...todo, completed: !completed } : todo
+  //         ),
+  //       }));
+  //     })
+  //     .catch(error => console.log('Error updating todo completion', error));
+  // };
+
+  // const handleTogglePending = (todoId, pending) => {
+  //   axios.put(`http://localhost:8083/api/todos/${todoId}/pending`, { pending: !pending })
+  //     .then(response => {
+  //       setProject(prev => ({
+  //         ...prev,
+  //         todos: prev.todos.map(todo => 
+  //           todo.id === todoId ? { ...todo, pending: !pending } : todo
+  //         ),
+  //       }));
+  //     })
+  //     .catch(error => console.log('Error updating todo pending', error));
+  // };
+  const handleToggleStatus = (todoId, currentStatus) => {
+    // Determine the new status
+    const newStatus = currentStatus === 'COMPLETED' ? 'PENDING' : 'COMPLETED';
+  
+    // Prepare the API endpoint based on the status
+    const apiEndpoint = newStatus === 'COMPLETED' 
+      ? `http://localhost:8083/api/todos/${todoId}/complete` 
+      : `http://localhost:8083/api/todos/${todoId}/pending`;
+  
+    // Prepare the body for the API call (you may need to adjust depending on how the backend expects the request)
+    const body = newStatus === 'COMPLETED' 
+      ? { completed: true } 
+      : { pending: true };
+  
+    axios.put(apiEndpoint, body)
       .then(response => {
+        // Update the state of the todo list to reflect the new status
         setProject(prev => ({
           ...prev,
           todos: prev.todos.map(todo => 
-            todo.id === todoId ? { ...todo, completed: !completed } : todo
+            todo.id === todoId ? { ...todo, status: newStatus } : todo
           ),
         }));
       })
-      .catch(error => console.log('Error updating todo completion', error));
+      .catch(error => console.log('Error toggling todo status', error));
   };
-
+  
   const handleDeleteTodo = (todoId) => {
     axios.delete(`http://localhost:8083/api/todos/${todoId}`)
       .then(() => {
@@ -506,6 +545,21 @@ const ProjectDetails = () => {
     return date.toLocaleString(); // Formats date to a readable string
   };
 
+
+  const exportAsGist = () => {
+    axios
+      .post(`http://localhost:8083/api/projects/${id}/export-gist`)
+      .then((response) => {
+        const gistUrl = JSON.parse(response.data).html_url;
+        console.log("Hii" +response)
+        // GitHub API returns the gist URL
+        alert(`Gist created successfully: ${gistUrl}`);
+    })
+      .catch((error) => {
+        console.error('Error exporting gist:', error);
+        alert('Failed to export project as gist.');
+      });
+  };
   return (
     <div className="project-details-container">
       <div className="project-title">
@@ -538,9 +592,16 @@ const ProjectDetails = () => {
                 <div className="todo-card-header">
                   <h3>{todo.description}</h3>
                   <div>
-                    <button onClick={() => handleToggleCompletion(todo.id, todo.completed)}>
+                    {/* <button onClick={() => handleToggleCompletion(todo.id, todo.completed)}>
                       Mark as {todo.completed ? 'Pending' : 'Completed'}
-                    </button>
+                    </button> */}
+
+<button
+              onClick={() => handleToggleStatus(todo.id, todo.status)}
+              disabled={todo.status === 'COMPLETED' && todo.completed || todo.status === 'PENDING' && todo.pending}
+            >
+              {todo.status === 'COMPLETED' ? 'Mark as Pending' : 'Mark as Complete'}
+            </button>
                     <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
 
                     
@@ -559,14 +620,16 @@ const ProjectDetails = () => {
                   </div>
                 ) : (
                   <div className="todo-card-details">
-                    <p><strong>Status:</strong> {todo.completed ? 'Completed' : 'Pending'}</p>
-                    <p><strong>Created Date:</strong> {formatDate(todo.createdDate)}</p>
+<p><strong>Status:</strong> {todo.status === 'COMPLETED' ? 'Completed' : 'Pending'}</p>
+<p><strong>Created Date:</strong> {formatDate(todo.createdDate)}</p>
                     <p><strong>Last Updated:</strong> {formatDate(todo.updatedDate)}</p>
                   </div>
                 )}
+     
               </div>
             ))}
           </div>
+       
         </div>
       )}
 
@@ -596,6 +659,7 @@ const ProjectDetails = () => {
                   checked={newTodo.completed}
                   onChange={(e) => setNewTodo({ ...newTodo, completed: e.target.checked })}
                 />
+                
                 Mark as Completed
               </label>
             </div>
@@ -607,6 +671,9 @@ const ProjectDetails = () => {
           </div>
         </div>
       )}
+                    <button onClick={exportAsGist} className="export-gist-button">
+      Export as Gist
+    </button>
     </div>
   );
 };

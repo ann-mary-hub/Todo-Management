@@ -173,4 +173,104 @@ public class TodoController {
         Todo updatedTodo = todoService.markTodoAsPending(todoId);
         return ResponseEntity.ok(updatedTodo);
     }
+
+
+
+
+//  @Value("${github.token}") // Store GitHub token securely
+//     private String githubToken;
+//     @PostMapping("/{projectId}/export-gist")
+// public ResponseEntity<Map<String, Object>> exportAsGist(@PathVariable Long projectId) {
+//     Project project = projectService.getProjectById(projectId); // Fetch project
+//     if (project == null) {
+//         return ResponseEntity.notFound().build();
+//     }
+
+//     // Generate Gist content in Markdown format
+//     StringBuilder markdown = new StringBuilder();
+//     markdown.append("# ").append(project.getTitle()).append("\n\n");
+//     markdown.append("Summary: ")
+//             .append(project.getTodos().stream().filter(todo -> todo.getStatus() == Todo.Status.COMPLETED).count())
+//             .append(" / ")
+//             .append(project.getTodos().size())
+//             .append(" completed.\n\n");
+
+//     // Create lists for Pending and Completed Todos
+//     List<String> pendingTodos = project.getTodos().stream()
+//             .filter(todo -> todo.getStatus() == Todo.Status.PENDING)
+//             .map(Todo::getDescription)
+//             .collect(Collectors.toList());
+//             System.out.println("Hii" + pendingTodos);
+
+//     List<String> completedTodos = project.getTodos().stream()
+//             .filter(todo -> todo.getStatus() == Todo.Status.COMPLETED)
+//             .map(Todo::getDescription)
+//             .collect(Collectors.toList());
+//             System.out.println("Hii" + completedTodos);
+
+
+//     // Log to ensure that the todos are filtered correctly
+//     System.out.println("All Todos: " + project.getTodos());
+
+//     System.out.println("Pending Todos: " + pendingTodos);
+//     System.out.println("Completed Todos: " + completedTodos);
+
+//     // Add Pending Todos to markdown
+//     if (!pendingTodos.isEmpty()) {
+//         markdown.append("## Pending Todos:\n");
+//         pendingTodos.forEach(todo -> markdown.append("- [ ] ").append(pendingTodos).append("\n"));
+//     } else {
+//         markdown.append("## Pending Todos: None\n");
+//     }
+
+//     markdown.append("\n");
+
+//     // Add Completed Todos to markdown
+//     if (!completedTodos.isEmpty()) {
+//         markdown.append("## Completed Todos:\n");
+//         completedTodos.forEach(todo -> markdown.append("- [x] ").append(completedTodos).append("\n"));
+//     } else {
+//         markdown.append("## Completed Todos: None\n");
+//     }
+
+//     // Prepare the payload for GitHub API
+//     String payload = String.format("""
+//         {
+//             "description": "Project Summary: %s",
+//             "public": false,
+//             "files": {
+//                 "%s.md": {
+//                     "content": "%s"
+//                 }
+//             }
+//         }
+//         """, project.getTitle(), project.getTitle(), markdown.toString().replace("\n", "\\n"));
+
+//     // Send request to GitHub API
+//     String url = "https://api.github.com/gists";
+//     HttpHeaders headers = new HttpHeaders();
+//     headers.setBearerAuth(githubToken);
+//     headers.set("Content-Type", "application/json");
+//     HttpEntity<String> request = new HttpEntity<>(payload, headers);
+
+//     RestTemplate restTemplate = new RestTemplate();
+//     ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
+
+//     // Prepare the response body as a map
+//     Map<String, Object> responseBody = new HashMap<>();
+//     if (response.getStatusCode().is2xxSuccessful()) {
+//         // Add the GitHub response and todos to the response map
+//         responseBody.put("gist", response.getBody());
+//         responseBody.put("pendingTodos", pendingTodos);
+//         responseBody.put("completedTodos", completedTodos);
+
+//         return ResponseEntity.ok(responseBody);
+//     }
+
+//     // In case of an error, return the error status and the response from GitHub
+//     responseBody.put("error", "Failed to create gist");
+//     responseBody.put("gistResponse", response.getBody());
+
+//     return ResponseEntity.status(response.getStatusCode()).body(responseBody);
+// }
 }
