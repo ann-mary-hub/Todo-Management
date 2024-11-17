@@ -1,8 +1,8 @@
 General Container Styles
 .project-list-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 100px;
+    margin-left: 50px;
+    /* padding: 20px; */
     font-family: Arial, sans-serif;
     color: #333;
     background: #f9f9f9;
@@ -23,16 +23,18 @@ General Container Styles
   /* List Styling */
   .project-list {
     list-style-type: none;
-    padding: 0;
+    margin-left: 50px;
+    margin-right: 50px;
+
   }
   
   /* Each Project Item Styling */
   .project-item {
     background: #ffffff;
     margin: 10px 0;
-    padding: 15px 20px;
+    padding: 5px 20px;
     border-radius: 5px;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
@@ -58,6 +60,9 @@ General Container Styles
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 1rem;
+    margin-top: 2rem;
+    margin-left: 50px;
+    margin-left: 50px;
   }
   
   .create-project-button:hover {
@@ -66,8 +71,10 @@ General Container Styles
   
   .create-project-form {
     margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    margin-left: 50px;
+    margin-right: 50px;
+
     gap: 10px;
   }
   

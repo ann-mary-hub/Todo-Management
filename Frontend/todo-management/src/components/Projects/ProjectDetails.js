@@ -399,6 +399,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { saveAs } from 'file-saver';
+
 import './ProjectDetails.css';
 
 const ProjectDetails = () => {
@@ -411,6 +413,7 @@ const ProjectDetails = () => {
   const [editedDescription, setEditedDescription] = useState('');
   const [editingTitle, setEditingTitle] = useState(false);
   const [newTitle, setNewTitle] = useState('');
+  
 
   useEffect(() => {
     // Fetch the project details from the backend
@@ -546,15 +549,89 @@ const ProjectDetails = () => {
   };
 
 
+  // const exportAsGist = () => {
+  //   axios
+  //     .post(`http://localhost:8083/api/projects/${id}/export-gist`)
+  //     .then((response) => {
+  //       const gistUrl = (response.data).html_url;
+  //       console.log("Hii" +response)
+  //       // GitHub API returns the gist URL
+  //       alert(`Gist created successfully: ${gistUrl}`);
+  //   })
+  //   const rawGistUrl = gistUrl.replace('github.com', 'gist.githubusercontent.com').concat('/raw');
+  //     console.log('Fetching raw content from: ', rawGistUrl);
+
+  //     axios
+  //       .get(rawGistUrl)
+  //       .then((fileResponse) => {
+  //         // Create a Blob from the content (Markdown file)
+  //         const blob = new Blob([fileResponse.data], { type: 'text/markdown' });
+
+  //         // Create a link element
+  //         const link = document.createElement('a');
+  //         link.download = 'exported-gist.md'; // Set the file name
+  //         link.href = URL.createObjectURL(blob);
+
+  //         // Trigger a download by simulating a click
+  //         document.body.appendChild(link);
+  //         link.click();
+  //         document.body.removeChild(link);
+          
+  //         // Notify user of success
+  //         alert('Gist downloaded as .md file!');
+  //       })
+  //       .catch((error) => {
+  //         console.error('Error fetching Gist raw content:', error);
+  //         alert('Failed to download the Gist.');
+  //       });
+  //   })
+  //   .catch((error) => {
+  //     console.error('Error exporting gist:', error);
+  //     alert('Failed to export project as gist.');
+  //   });
+  // };
+
   const exportAsGist = () => {
     axios
       .post(`http://localhost:8083/api/projects/${id}/export-gist`)
       .then((response) => {
-        const gistUrl = JSON.parse(response.data).html_url;
-        console.log("Hii" +response)
-        // GitHub API returns the gist URL
-        alert(`Gist created successfully: ${gistUrl}`);
-    })
+        // Extract the Gist URL and get Gist ID
+        const gistUrl = response.data.html_url;
+        console.log('Gist URL: ', gistUrl);
+  
+        // Get the Gist ID from the URL (this assumes you know how the URL is structured)
+        const gistId = gistUrl.split('/')[4]; // Extract Gist ID from the URL
+        const gistApiUrl = `https://api.github.com/gists/${gistId}`;
+  
+        // Fetch the Gist details (this gives us information about the files in the Gist)
+        axios
+          .get(gistApiUrl)
+          .then((gistResponse) => {
+            const files = gistResponse.data.files;
+  
+            // Iterate over all files in the Gist
+            Object.keys(files).forEach((fileName) => {
+              const fileContent = files[fileName]?.content;
+  
+              if (fileContent) {
+                // Create a Blob with the file content
+                const blob = new Blob([fileContent], { type: 'text/markdown' });
+  
+                // Trigger the file download
+                saveAs(blob, fileName);  // This will trigger the download with the file name
+  
+                console.log(`Downloading file: ${fileName}`);
+              }
+            });
+  
+            // Notify user of success
+            alert('All Gist files have been downloaded!');
+          })
+          .catch((error) => {
+            console.error('Error fetching Gist details:', error);
+            alert('Failed to retrieve Gist details.');
+          });
+      })
       .catch((error) => {
         console.error('Error exporting gist:', error);
         alert('Failed to export project as gist.');

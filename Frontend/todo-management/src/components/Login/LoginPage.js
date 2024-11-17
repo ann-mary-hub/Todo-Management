@@ -224,7 +224,6 @@ const LoginPage = () => {
                 </div>
                 <button type="submit">Login</button>
                 {/* Use Link instead of anchor tag */}
-                <p>Not registered? <Link to="/register">Register</Link></p>
             </form>
         </div>
     );

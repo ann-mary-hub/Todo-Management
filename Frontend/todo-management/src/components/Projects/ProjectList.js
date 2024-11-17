@@ -134,7 +134,7 @@ const ProjectList = () => {
         onClick={() => setShowForm(!showForm)}
         className="create-project-button"
       >
-        {showForm ? 'Cancel' : 'Create a Project'}
+        {showForm ? 'Cancel' : 'Create a New Project'}
       </button>
 
       {/* Form to Create a New Project */}
