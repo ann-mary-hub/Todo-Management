@@ -1,0 +1,152 @@
+.project-details-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.project-todos {
+  margin-top: 20px;
+}
+
+.project-title-edit {
+  margin-top: 20px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-todo-button {
+  margin-top: 20px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.export-gist-button {
+  margin-top: 20px;
+  margin-left: 100px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.todo-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.todo-card {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.todo-card:hover {
+  transform: translateY(-5px);
+}
+
+.todo-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-card-header button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #0073e6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.todo-card-header button:hover {
+  background-color: #005bb5;
+}
+
+.todo-card-details {
+  margin-top: 10px;
+}
+
+.edit-todo {
+  margin-top: 10px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal h2 {
+  margin: 0 0 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.mandatory {
+  color: red;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.save-button,
+.cancel-button {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.save-button {
+  background-color: #0073e6;
+  color: white;
+}
+
+.cancel-button {
+  background-color: #f4f4f4;
+  color: black;
+}
