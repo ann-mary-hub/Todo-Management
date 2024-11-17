@@ -35,7 +35,7 @@ public class Todo {
     @JoinColumn(name = "project_id")
     @JsonIgnore
     private Project project;
-    
+
     public Long getId() {
         return todo_id;
     }
@@ -76,21 +76,16 @@ public class Todo {
         this.updatedDate = updatedDate;
     }
 
+    public Project getProject() {
+        return project;
+    }
 
-public Project getProject() {
-    return project;
-}
+    public void setProject(Project project) {
+        this.project = project;
+    }
 
-public void setProject(Project project) {
-    this.project = project;
-}
-
-
-
-public enum Status {
-    PENDING, COMPLETED
-}
-
+    public enum Status {
+        PENDING, COMPLETED
+    }
 
 }
-

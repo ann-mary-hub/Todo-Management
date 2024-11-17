@@ -13,4 +13,3 @@ public class Security {
         return "This is secure data.";
     }
 }
-

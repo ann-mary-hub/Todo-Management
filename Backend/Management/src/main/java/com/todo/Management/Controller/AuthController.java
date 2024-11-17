@@ -26,7 +26,6 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully!");
     }
 
-
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody User user) {
         User existingUser = userService.findByUsername(user.getUsername());

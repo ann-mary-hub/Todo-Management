@@ -13,9 +13,10 @@ public class UserService {
     @Autowired
     private UserRepo userRepo;
 
-    //private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    // private final BCryptPasswordEncoder passwordEncoder = new
+    // BCryptPasswordEncoder();
 
-    public User registerUser(String username, String password,String name,String email) {
+    public User registerUser(String username, String password, String name, String email) {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
@@ -29,10 +30,7 @@ public class UserService {
         return userOpt.orElse(null); // Return null if user not found
     }
 
-
-
-
-    public void updateUserDetails(String username, String name, String email,String address,String phone) {
+    public void updateUserDetails(String username, String name, String email, String address, String phone) {
         Optional<User> userOptional = userRepo.findByUsername(username);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
@@ -47,4 +45,3 @@ public class UserService {
     }
 
 }
-

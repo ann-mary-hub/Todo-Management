@@ -1,105 +1,3 @@
-/* .project-details-container {
-  padding: 20px;
-  font-family: Arial, sans-serif;
-}
-
-.project-todos ul {
-  list-style: none;
-  padding: 0;
-}
-
-.todo-item {
-  margin-bottom: 10px;
-}
-
-.add-todo-button {
-  margin-top: 20px;
-  padding: 10px 15px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.add-todo-button:hover {
-  background-color: #0056b3;
-}
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  width: 400px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.modal h2 {
-  margin: 0 0 20px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-}
-
-.mandatory {
-  color: red;
-}
-
-.error {
-  color: red;
-  font-size: 14px;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: space-between;
-}
-
-.save-button, .cancel-button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.save-button {
-  background-color: #28a745;
-  color: white;
-}
-
-.cancel-button {
-  background-color: #dc3545;
-  color: white;
-}
-
-.save-button:hover {
-  background-color: #218838;
-}
-
-.cancel-button:hover {
-  background-color: #c82333;
-} */
-
-
 .project-details-container {
   padding: 20px;
   font-family: Arial, sans-serif;
@@ -118,6 +16,7 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
 .add-todo-button {
   margin-top: 20px;
   padding: 10px 15px;
@@ -130,7 +29,7 @@
 
 .export-gist-button {
   margin-top: 20px;
-  margin-left:100px;
+  margin-left: 100px;
   padding: 10px 15px;
   background-color: #007bff;
   color: white;
@@ -138,6 +37,7 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
 .todo-cards {
   display: flex;
   flex-wrap: wrap;
@@ -204,9 +104,11 @@
   width: 400px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 .modal h2 {
   margin: 0 0 20px;
 }
+
 .form-group {
   margin-bottom: 15px;
 }
@@ -225,10 +127,12 @@
   color: red;
   font-size: 14px;
 }
+
 .modal-actions {
   display: flex;
   justify-content: space-between;
 }
+
 .save-button,
 .cancel-button {
   padding: 10px;

@@ -6,4 +6,3 @@ import com.todo.Management.Entity.Todo;
 
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 }
-

@@ -17,17 +17,16 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long project_id;
-    
+
     @Column(nullable = false)
     private String title;
-    
+
     @Column(nullable = false)
     private LocalDateTime createdDate;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Todo> todos = new ArrayList<>();
 
-    
     public Long getId() {
         return project_id;
     }
