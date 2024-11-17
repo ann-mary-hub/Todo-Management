@@ -1,4 +1,4 @@
-/* General Container Styles */
+General Container Styles
 .project-list-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -49,6 +49,57 @@
     font-size: 1rem;
     color: #555;
   }
+
+  .create-project-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+  
+  .create-project-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .create-project-form {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+
+  .project-input,
+.project-textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.submit-project-button {
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-project-button:hover {
+  background-color: #218838;
+}
+
+.error-message {
+  color: red;
+}
+
+.success-message {
+  color: green;
+}
   
   /* Hover Effects */
   .project-item:hover {
@@ -70,4 +121,7 @@
       font-size: 0.9rem;
     }
   }
+  
+
+
   
